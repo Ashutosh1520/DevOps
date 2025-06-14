@@ -1,0 +1,15 @@
+                   ┌────────────────────────────┐
+                   │        API Clients         │
+                   └────────────┬───────────────┘
+                                │
+                         ┌──────▼─────┐
+                         │   CosmosDB │  ← Stores 0–1 month data
+                         └──────┬─────┘
+                                │
+              ┌────────────────▼────────────────┐
+              │ Azure Data Factory (Pipeline)   │ ← Moves data to Blob Storage
+              └────────────┬────────────┬───────┘
+                           │            │
+                ┌──────────▼───┐   ┌────▼──────────┐
+                │  Hot Storage │   │  Cold Storage │ ← Hot data auto moves to Cold after 3 months
+                └──────────────┘   └───────────────┘
